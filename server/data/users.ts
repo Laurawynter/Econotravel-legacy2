@@ -1,4 +1,4 @@
-import iUser from "../model/interfaces/iUser";
+import {iUser} from "../model/interfaces/iUser" ;
 
 const users:iUser[] = []
 

@@ -20,11 +20,23 @@ export const createPosts = async (req, res) => {
     }
 }*/
 
-import { Request, Response } from "express";
-import iExperience from "../model/interfaces/iExperience";
-import experienceModel from "../model/experienceModel";
+import { Request, Response} from "express";
+import {Experience} from "./model/experience";
+import {experienceDAO} from './loginController';
+const experienceController = async (req:Request,res:Response)=>{
 
-export const experienceController = async (req: Request, res: Response) => {
-  const experiences: any = experienceModel.getExperiences();
-  res.json(experiences);
-};
+
+    try {
+            const result = await experienceDAO.getexperiences();
+
+            result
+                ? res.status(201).json(result)
+                : res.status(500).send("Failed to create a new user.");
+
+    } catch (error: any) {
+
+        res.status(400).send(error.message);
+    }
+}
+
+export default experienceController;
